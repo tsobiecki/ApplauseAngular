@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutGap="40px">
+  <form [formGroup]="testersForm" (ngSubmit)="getTesters()">
+    <div fxLayout="row" fxLayoutGap="30px">
+      <div>
+        <h2>Choose countries:</h2>
+        <h4>If you don't pick any country all will be queried</h4>
+        <mat-selection-list
+          aria-labelledby="example-radio-group-label"
+          formControlName="countries">
+          <mat-list-option class="countries" id="country-{{country}}" *ngFor="let country of countries" [value]="country">
+            {{country}}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+      <div>
+        <h2>Choose devices:</h2>
+        <h4>If you don't pick any device all will be queried.</h4>
+        <mat-selection-list
+          aria-labelledby="example-radio-group-label"
+          formControlName="deviceIds">
+          <mat-list-option class="devices" id="device-{{device.id}}" *ngFor="let device of devices" [value]="device">
+            {{device.deviceName}}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+
+    </div>
+    <button id="submit-btn" mat-button type="submit">Submit</button>
+
+  </form>
+  <div *ngIf="testers">
+    <h2>These are testers for given search criteria:</h2>
+    <div *ngFor="let tester of testers">
+      <p id="tester-{{tester.fullName}}">Tester {{tester.fullName}} has found {{tester.experience}} bugs!</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
